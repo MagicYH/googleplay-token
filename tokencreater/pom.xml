@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>googleplay.helper</groupId>
+  <artifactId>token-creater</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>token-creater</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.5.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>googleplay.helper</groupId>
+      <artifactId>play-store-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.github.magic.googleplaytoken.TokenCreater</mainClass> <!-- 你的主类名 -->
+              <useUniqueVersions>false</useUniqueVersions>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+            <manifestEntries>
+              <Class-Path>.</Class-Path>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>  
+          <groupId>org.apache.maven.plugins</groupId>  
+          <artifactId>maven-dependency-plugin</artifactId>  
+          <executions>  
+              <execution>  
+                  <id>copy</id>  
+                  <phase>package</phase>  
+                  <goals>  
+                      <goal>copy-dependencies</goal>  
+                  </goals>  
+                  <configuration>  
+                      <outputDirectory>${project.build.directory}/lib</outputDirectory>  
+                  </configuration>  
+              </execution>  
+          </executions>  
+      </plugin>
+    </plugins>
+  </build>
+</project>
